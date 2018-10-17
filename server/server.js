@@ -7,7 +7,7 @@ var {User} = require('./models/user');
 
 var app = express();
 
-app.use(bodyParser.json()); //middleware
+app.use(bodyParser.json()); //middleware, allows you to get body text to json?
 
 app.post('/todos',(req, res)=>{
     console.log(req.body);
@@ -16,7 +16,7 @@ app.post('/todos',(req, res)=>{
     });
 
     todo.save().then((doc)=>{
-        res.send(doc);
+        res.status(200).send(doc);
     }, (e)=>{
         res.status(400).send(e);
     })
@@ -26,6 +26,7 @@ app.listen(3000, ()=>{
     console.log('Started on Port 3000');
 })
 
+module.exports = {app};
 //--------------------------------------------------------------------
 
 // // //new object
